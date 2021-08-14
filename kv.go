@@ -7,23 +7,31 @@ import (
 
 // KVOptions represent Cloudflare and Redis client information
 type KVOptions struct {
-	api         *cloudflare.API
-	redisClient *redis.Client
+	redisClient      *redis.Client
+	cloudflareClient *cloudflare.API
 }
 
 // KV is a type that implements a Redis and Cloudflare key-value store.
 type KV interface {
-	Read(key string) ([]byte, error)
-	Write(key string, value []byte) (bool, error)
-	ListKeysByPrefix(prefix string) ([]string, error)
-	Delete(key string) (bool, error)
+	Read(key string, namespaceID string) ([]byte, error)
+	Write(key string, value []byte, namespaceID string) (bool, error)
+	ListKeysByPrefix(prefix string, namespaceID string) ([]string, error)
+	Delete(key string, namespaceID string) (bool, error)
+	RedisRead(key string) ([]byte, error)
+	RedisWrite(key string, value []byte) (bool, error)
+	RedisListKeysByPrefix(prefix string) ([]string, error)
+	RedisDelete(key string) (bool, error)
+	CloudflareKVRead(key string, namespaceID string) ([]byte, error)
+	CloudflareKVWrite(key string, value []byte, namespaceID string) (bool, error)
+	CloudflareKVListKeysByPrefix(prefix string, namespaceID string) ([]string, error)
+	CloudflareKVDelete(key string, namespaceID string) (bool, error)
 }
 
 // New returns a client for Redis and CloudFlare KV
 func New(redisURL string, cloudflareApiKey string, cloudflareEmail string, cloudflareAccountID string) *KVOptions {
 	kvOptions := KVOptions{
-		api:         NewRedisClient(redisURL).api,
-		redisClient: NewCloudflareClient(cloudflareApiKey, cloudflareEmail, cloudflareAccountID).redisClient,
+		redisClient:      NewRedisClient(redisURL),
+		cloudflareClient: NewCloudflareClient(cloudflareApiKey, cloudflareEmail, cloudflareAccountID),
 	}
 	return &kvOptions
 }

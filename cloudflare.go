@@ -7,24 +7,13 @@ import (
 	"github.com/cloudflare/cloudflare-go"
 )
 
-// CloudflareKV is a type that implements a CloudFlare key-value store
-type CloudflareKV interface {
-	CloudflareKVRead(key string, namespaceID string) ([]byte, error)
-	CloudflareKVWrite(key string, value []byte, namespaceID string) (bool, error)
-	CloudflareKVListKeysByPrefix(prefix string, namespaceID string) ([]string, error)
-	CloudflareKVDelete(key string, namespaceID string) (bool, error)
-}
-
 // NewCloudflareClient returns a new Cloudflare v4 API client
-func NewCloudflareClient(apiKey string, email string, accountID string) *KVOptions {
+func NewCloudflareClient(apiKey string, email string, accountID string) *cloudflare.API {
 	cloudflareClient, err := cloudflare.New(apiKey, email, cloudflare.UsingAccount(accountID))
 	if err != nil {
 		log.Fatalln(err)
 	}
-	kvOptions := KVOptions{
-		api: cloudflareClient,
-	}
-	return &kvOptions
+	return cloudflareClient
 }
 
 // CloudflareKVRead returns the value associated with the given key in the given namespace

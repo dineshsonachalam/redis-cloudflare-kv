@@ -7,16 +7,8 @@ import (
 	"github.com/go-redis/redis/v8"
 )
 
-// RedisKV is a type that implements a Redis key-value store
-type RedisKV interface {
-	RedisRead(key string) ([]byte, error)
-	RedisWrite(key string, value []byte) (bool, error)
-	RedisListKeysByPrefix(prefix string) ([]string, error)
-	RedisDelete(key string) (bool, error)
-}
-
 // NewRedisClient returns a client to the Redis Server
-func NewRedisClient(redisURL string) *KVOptions {
+func NewRedisClient(redisURL string) *redis.Client {
 	opt, err := redis.ParseURL(redisURL)
 	if err != nil {
 		panic(err)
@@ -26,10 +18,7 @@ func NewRedisClient(redisURL string) *KVOptions {
 	if err != nil {
 		log.Fatalln(err)
 	}
-	kvOptions := KVOptions{
-		redisClient: redisClient,
-	}
-	return &kvOptions
+	return redisClient
 }
 
 // RedisRead returns value for that key
