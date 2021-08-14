@@ -1,1 +1,1 @@
-# redis-cloudflare-kv
+# Redis and Cloudflare KV client for Golang
