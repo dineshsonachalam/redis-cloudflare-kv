@@ -20,10 +20,10 @@ type KV interface {
 }
 
 // New returns a client for Redis and CloudFlare KV
-func New(redisURL string, apiKey string, email string, accountId string) *KVOptions {
+func New(redisURL string, cloudflareApiKey string, cloudflareEmail string, cloudflareAccountID string) *KVOptions {
 	kvOptions := KVOptions{
 		api:         NewRedisClient(redisURL).api,
-		redisClient: NewCloudflareClient(apiKey, email, accountId).redisClient,
+		redisClient: NewCloudflareClient(cloudflareApiKey, cloudflareEmail, cloudflareAccountID).redisClient,
 	}
 	return &kvOptions
 }

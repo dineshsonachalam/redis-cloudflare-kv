@@ -16,8 +16,8 @@ type CloudflareKV interface {
 }
 
 // NewCloudflareClient returns a new Cloudflare v4 API client
-func NewCloudflareClient(apiKey string, email string, accountId string) *KVOptions {
-	cloudflareClient, err := cloudflare.New(apiKey, email, cloudflare.UsingAccount(accountId))
+func NewCloudflareClient(apiKey string, email string, accountID string) *KVOptions {
+	cloudflareClient, err := cloudflare.New(apiKey, email, cloudflare.UsingAccount(accountID))
 	if err != nil {
 		log.Fatalln(err)
 	}
