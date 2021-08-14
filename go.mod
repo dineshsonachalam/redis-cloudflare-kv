@@ -1,4 +1,4 @@
-module rediscloudflarekv
+module github.com/dineshsonachalam/redis-cloudflare-kv
 
 go 1.16
 
