@@ -11,14 +11,9 @@ import (
 func NewRedisClient(redisURL string) *redis.Client {
 	opt, err := redis.ParseURL(redisURL)
 	if err != nil {
-		panic(err)
-	}
-	redisClient := redis.NewClient(opt)
-	_, err = redisClient.Ping(context.Background()).Result()
-	if err != nil {
 		log.Fatalln(err)
 	}
-	return redisClient
+	return redis.NewClient(opt)
 }
 
 // RedisRead returns value for that key
