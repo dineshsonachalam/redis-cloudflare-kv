@@ -24,3 +24,11 @@
 </p>
 
 Ask questions in the <a href ="https://github.com/dineshsonachalam/redis-cloudflare-kv/issues">GitHub issues</a>
+
+## Installation
+
+You need a working Go environment.
+
+```
+go get github.com/dineshsonachalam/redis-cloudflare-kv
+```
