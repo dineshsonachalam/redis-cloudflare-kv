@@ -4,6 +4,7 @@ import (
 	"os"
 	"sort"
 	"testing"
+	"time"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -47,6 +48,8 @@ func TestCloudflareKV_CloudflareKVWrite(t *testing.T) {
 }
 
 func TestCloudflareKV_CloudflareKVRead(t *testing.T) {
+	time.Sleep(60 * time.Second)
+
 	value, err := kvClient.CloudflareKVRead("dineshsonachalam.app1.aws.com", os.Getenv("TEST_NAMESPACE_ID"))
 	if assert.NoError(t, err) {
 		assert.Equal(t, value, []byte("gitlab.openai.com"))

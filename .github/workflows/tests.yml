@@ -19,7 +19,7 @@ jobs:
             CLOUDFLARE_ACCESS_KEY: ${{ secrets.CLOUDFLARE_ACCESS_KEY }}
             CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
             TEST_NAMESPACE_ID: ${{ secrets.TEST_NAMESPACE_ID }}
-          run: go test -cover -p 1 -coverprofile coverage.out
+          run: go test -p 1 -coverprofile coverage.out
   
         - name: SonarCloud Scan
           uses: sonarsource/sonarcloud-github-action@master
