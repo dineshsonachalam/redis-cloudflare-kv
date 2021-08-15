@@ -1,7 +1,7 @@
 # Redis and Cloudflare KV client for Golang
 <p align="center">
     <a href="https://sonarcloud.io/dashboard?id=redis-cloudflare-kv">
-        <img src="https://sonarcloud.io/api/project_badges/measure?project=redis-cloudflare-kv&metric=alert_status"/>
+        <img src="https://sonarcloud.io/api/project_badges/quality_gate?project=redis-cloudflare-kv"/>
     </a>
 </p>
 <p align="center">
