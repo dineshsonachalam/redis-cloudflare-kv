@@ -17,7 +17,7 @@ func NewCloudflareClient(apiKey string, email string, accountID string) *cloudfl
 }
 
 // CloudflareKVRead returns the value associated with the given key in the given namespace
-func (opt *KVOptions) CloudflareKVRead(key string, namespaceID string) ([]byte, error) {
+func (opt *Client) CloudflareKVRead(key string, namespaceID string) ([]byte, error) {
 	value, err := opt.cloudflareClient.ReadWorkersKV(
 		context.Background(),
 		namespaceID,
@@ -30,7 +30,7 @@ func (opt *KVOptions) CloudflareKVRead(key string, namespaceID string) ([]byte, 
 }
 
 // CloudflareKVWrite writes a value identified by a key.
-func (opt *KVOptions) CloudflareKVWrite(key string, value []byte, namespaceID string) (bool, error) {
+func (opt *Client) CloudflareKVWrite(key string, value []byte, namespaceID string) (bool, error) {
 	response, err := opt.cloudflareClient.WriteWorkersKV(
 		context.Background(),
 		namespaceID,
@@ -46,7 +46,7 @@ func (opt *KVOptions) CloudflareKVWrite(key string, value []byte, namespaceID st
 }
 
 // CloudflareKVListKeysByPrefix returns keys that matches the prefix
-func (opt *KVOptions) CloudflareKVListKeysByPrefix(prefix string, namespaceID string) ([]string, error) {
+func (opt *Client) CloudflareKVListKeysByPrefix(prefix string, namespaceID string) ([]string, error) {
 	var keys []string
 	limit := 500
 	options := cloudflare.ListWorkersKVsOptions{
@@ -67,7 +67,7 @@ func (opt *KVOptions) CloudflareKVListKeysByPrefix(prefix string, namespaceID st
 }
 
 // CloudflareKVDelete deletes a key and value for a provided storage namespace
-func (opt *KVOptions) CloudflareKVDelete(key string, namespaceID string) (bool, error) {
+func (opt *Client) CloudflareKVDelete(key string, namespaceID string) (bool, error) {
 	response, err := opt.cloudflareClient.DeleteWorkersKV(
 		context.Background(),
 		namespaceID,

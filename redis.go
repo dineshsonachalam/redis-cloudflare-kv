@@ -17,7 +17,7 @@ func NewRedisClient(redisURL string) *redis.Client {
 }
 
 // RedisRead returns value for that key
-func (opt *KVOptions) RedisRead(key string) ([]byte, error) {
+func (opt *Client) RedisRead(key string) ([]byte, error) {
 	value, err := opt.redisClient.Get(context.Background(), key).Bytes()
 	if err != nil {
 		return nil, err
@@ -26,7 +26,7 @@ func (opt *KVOptions) RedisRead(key string) ([]byte, error) {
 }
 
 // RedisWrite writes a value identified by a key.
-func (opt *KVOptions) RedisWrite(key string, value []byte) (bool, error) {
+func (opt *Client) RedisWrite(key string, value []byte) (bool, error) {
 	if err := opt.redisClient.Set(context.Background(), key, value, 0).Err(); err != nil {
 		return false, err
 	}
@@ -34,7 +34,7 @@ func (opt *KVOptions) RedisWrite(key string, value []byte) (bool, error) {
 }
 
 // RedisListKeysByPrefix returns keys that matches the prefix
-func (opt *KVOptions) RedisListKeysByPrefix(prefix string) ([]string, error) {
+func (opt *Client) RedisListKeysByPrefix(prefix string) ([]string, error) {
 	var keys []string
 	iter := opt.redisClient.Scan(context.Background(), 0, prefix+"*", 0).Iterator()
 	for iter.Next(context.Background()) {
@@ -47,7 +47,7 @@ func (opt *KVOptions) RedisListKeysByPrefix(prefix string) ([]string, error) {
 }
 
 // RedisDelete deletes a key and value
-func (opt *KVOptions) RedisDelete(key string) (bool, error) {
+func (opt *Client) RedisDelete(key string) (bool, error) {
 	if err := opt.redisClient.Del(context.Background(), key).Err(); err != nil {
 		return false, err
 	}
