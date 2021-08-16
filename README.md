@@ -32,3 +32,8 @@ You need a working Go environment.
 ```
 go get github.com/dineshsonachalam/redis-cloudflare-kv
 ```
+
+## Quickstart
+
+<!-- MARKDOWN-AUTO-DOCS:START (CODE:src=./github/workflows/examples/main.go) -->
+<!-- MARKDOWN-AUTO-DOCS:END -->
