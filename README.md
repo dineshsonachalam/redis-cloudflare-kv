@@ -25,6 +25,9 @@
 
 Ask questions in the <a href ="https://github.com/dineshsonachalam/redis-cloudflare-kv/issues">GitHub issues</a>
 
+## Architecture
+<img src="./architecture.png"/>
+
 ## Installation
 
 You need a working Go environment.
