@@ -9,6 +9,7 @@ import (
 )
 
 func main() {
+	// Construct a new KV Client object
 	kvClient := rediscloudflarekv.New(
 		// REDIS_URL -> TCP Connection:  redis://<user>:<password>@<host>:<port>/<db_number>
 		//              UNIX Connection: unix://<user>:<password>@</path/to/redis.sock>?db=<db_number>
@@ -27,19 +28,27 @@ func main() {
 	key4 := "dineshsonachalam.app4.aws.com"
 	value4 := "grafana.openai.com"
 
+	// Write writes a value identified by a key in Redis and Cloudflare KV
 	status, err := kvClient.Write(key1, []byte(value1), namespaceID)
 	if !status && err != nil {
-		log.Fatalln("Write operation failed. Status: %v, Error: %v", err)
+		log.Fatal(err)
 	}
 	fmt.Printf("Write operation is successful for key: %v\n", key1)
+
+	// Read returns the value associated with the given key
+	// If the key is not available in the Redis server,
+	// it searches for the key in Cloudflare KV and if the key is available, it writes the key/value in the Redis.
+	// Then it returns the value associated with the given key.
 	value, err := kvClient.Read(key1, namespaceID)
 	if err != nil {
-		log.Fatalln("Read operation failed, Error: %v", err)
+		log.Fatal(err)
 	}
 	fmt.Printf("Read operation is successful. Key: %v, Value: %v\n", key1, string(value))
+
+	// Delete deletes a key/value in Redis and Cloudflare KV
 	status, err = kvClient.Delete(key1, namespaceID)
 	if !status && err != nil {
-		log.Fatalln("Delete operation failed. Status: %v, Error: %v", status, err)
+		log.Fatal(err)
 	}
 	fmt.Printf("Delete operation is successful for key: %v\n", key1)
 
@@ -47,9 +56,13 @@ func main() {
 	kvClient.Write(key3, []byte(value3), namespaceID)
 	kvClient.Write(key4, []byte(value4), namespaceID)
 
+	// ListKeysByPrefix returns keys that matches the prefix
+	// If there are no key's that matches the prefix in the Redis
+	// We search for the prefix pattern in Cloudflare KV, if there are keys
+	// that matches the prefix, we return the keys.
 	keys, err := kvClient.ListKeysByPrefix("dinesh", namespaceID)
 	if err != nil {
-		log.Fatalln("ListKeysByPrefix operation failed, Err: %v", err)
+		log.Fatal(err)
 	}
 	fmt.Printf("ListKeysByPrefix operation is successful. Keys: %v\n", keys)
 }
