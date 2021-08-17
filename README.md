@@ -125,3 +125,7 @@ func main() {
 // ListKeysByPrefix operation is successful. Keys: [opensource.facebook.docusaurus opensource.facebook.react-native opensource.facebook.flow]
 ```
 <!-- MARKDOWN-AUTO-DOCS:END -->
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/) © [dineshsonachalam](https://www.github.com/dineshsonachalam)
