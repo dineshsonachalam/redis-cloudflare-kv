@@ -3,7 +3,7 @@
     <img src="https://i.imgur.com/9Y1vNiT.png"/>
   </a>
 </h1>
-<p align="center">Go library for the Redis and Cloudflare KV</p>
+<p align="center">Redis caching layer for Cloudflare KV</p>
 
 <p align="center">
     <a href="https://sonarcloud.io/dashboard?id=redis-cloudflare-kv">
@@ -25,7 +25,14 @@
 
 Ask questions in the <a href ="https://github.com/dineshsonachalam/redis-cloudflare-kv/issues">GitHub issues</a>
 
-## Architecture
+
+## Why redis-cloudflare-kv?
+
+- redis-cloudflare-kv checks if there is a cached result for a query in Redis. 
+- If not found in the cache, it will retrieve data from Cloudflare KV and on successful result cache it in Redis for future queries.
+
+## Application Architecture
+
 <img src="./architecture.png"/>
 
 ## Installation
