@@ -3,7 +3,7 @@
     <img src="https://i.imgur.com/9Y1vNiT.png"/>
   </a>
 </h1>
-<p align="center">Redis caching layer for Cloudflare KV</p>
+<p align="center">Redis caching layer for Cloudflare KV in Golang</p>
 
 <p align="center">
     <a href="https://sonarcloud.io/dashboard?id=redis-cloudflare-kv">
