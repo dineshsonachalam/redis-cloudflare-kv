@@ -19,14 +19,14 @@ func main() {
 		os.Getenv("CLOUDFLARE_ACCOUNT_ID"),
 	)
 	namespaceID := os.Getenv("TEST_NAMESPACE_ID")
-	key1 := "dineshsonachalam.app1.aws.com"
-	value1 := "gitlab.openai.com"
-	key2 := "dineshsonachalam.app2.aws.com"
-	value2 := "jira.openai.com"
-	key3 := "dineshsonachalam.app3.aws.com"
-	value3 := "confluence.openai.com"
-	key4 := "dineshsonachalam.app4.aws.com"
-	value4 := "grafana.openai.com"
+	key1 := "opensource.facebook.react"
+	value1 := "A declarative, efficient, and flexible JavaScript library for building user interfaces."
+	key2 := "opensource.facebook.react-native"
+	value2 := "A framework for building native apps with React."
+	key3 := "opensource.facebook.flow"
+	value3 := "Adds static typing to JavaScript to improve developer productivity and code quality."
+	key4 := "opensource.facebook.docusaurus"
+	value4 := "Easy to maintain open source documentation websites."
 
 	// Write writes a value identified by a key in Redis and Cloudflare KV
 	status, err := kvClient.Write(key1, []byte(value1), namespaceID)
@@ -60,7 +60,7 @@ func main() {
 	// If there are no key's that matches the prefix in the Redis
 	// We search for the prefix pattern in Cloudflare KV, if there are keys
 	// that matches the prefix, we return the keys.
-	keys, err := kvClient.ListKeysByPrefix("dinesh", namespaceID)
+	keys, err := kvClient.ListKeysByPrefix("opensource.facebook", namespaceID)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -68,7 +68,8 @@ func main() {
 }
 
 // Output:
-// Write operation is successful for key: dineshsonachalam.app1.aws.com
-// Read operation is successful. Key: dineshsonachalam.app1.aws.com, Value: gitlab.openai.com
-// Delete operation is successful for key: dineshsonachalam.app1.aws.com
-// ListKeysByPrefix operation is successful. Keys: [dineshsonachalam.app3.aws.com dineshsonachalam.app4.aws.com dineshsonachalam.app2.aws.com]
+// dineshsonachalam@macbook examples % go run main.go
+// Write operation is successful for key: opensource.facebook.react
+// Read operation is successful. Key: opensource.facebook.react, Value: A declarative, efficient, and flexible JavaScript library for building user interfaces.
+// Delete operation is successful for key: opensource.facebook.react
+// ListKeysByPrefix operation is successful. Keys: [opensource.facebook.docusaurus opensource.facebook.react-native opensource.facebook.flow]
