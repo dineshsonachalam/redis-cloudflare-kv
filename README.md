@@ -52,7 +52,7 @@ import (
 )
 
 func main() {
-	// Construct a new KV Client object
+	// Construct a new Client object
 	kvClient := rediscloudflarekv.New(
 		// REDIS_URL -> TCP Connection:  redis://<user>:<password>@<host>:<port>/<db_number>
 		//              UNIX Connection: unix://<user>:<password>@</path/to/redis.sock>?db=<db_number>
