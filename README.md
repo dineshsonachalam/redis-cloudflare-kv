@@ -28,11 +28,10 @@ Ask questions in the <a href ="https://github.com/dineshsonachalam/redis-cloudfl
 
 ## Why redis-cloudflare-kv?
 
-- redis-cloudflare-kv checks if there is a cached result for a query in Redis. 
-- If not found in the cache, it will retrieve data from Cloudflare KV and on the successful result, cache it in Redis for future queries.
 - Cloudflare KV is a highly distributed, eventually consistent, key-value store that spans Cloudflare's global edge. It allows you to store billions of key-value pairs and read them with some average latency (2 to 3 seconds) anywhere in the world.
 - Cloudflare KV Read operation is very slow when compared to Redis which offers memory efficiency, fast operating speed, and high availability. So it's better to use Redis as a caching layer for Cloudflare KV to provide fast, economic scaling for your application.
-
+- redis-cloudflare-kv checks if there is a cached result for a query in Redis. 
+- If not found in the cache, it will retrieve data from Cloudflare KV and on the successful result, cache it in Redis for future queries.
 
 ## Application Architecture
 
