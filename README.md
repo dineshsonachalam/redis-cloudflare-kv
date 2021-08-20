@@ -33,6 +33,11 @@ Ask questions in the <a href ="https://github.com/dineshsonachalam/redis-cloudfl
 - redis-cloudflare-kv checks if there is a cached result for a query in Redis. 
 - If not found in the cache, it will retrieve data from Cloudflare KV and on the successful result, cache it in Redis for future queries.
 
+## Latency Comparison between Cloudflare KV vs Redis
+
+<!-- MARKDOWN-AUTO-DOCS:START (CODE:src=./.github/examples/latency_check.go) -->
+<!-- MARKDOWN-AUTO-DOCS:END -->
+
 ## Application Architecture
 
 <img src="./architecture.png"/>
