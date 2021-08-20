@@ -11,7 +11,8 @@ import (
 func main() {
 	// Construct a new KV Client object
 	kvClient := rediscloudflarekv.New(
-		// REDIS_URL -> TCP Connection:  redis://<user>:<password>@<host>:<port>/<db_number>
+		// REDIS_URL -> TCP Connection (Without SSL):  redis://<user>:<password>@<host>:<port>/<db_number>
+		//              TCP Connection (With SSL):     rediss://<user>:<password>@<host>:<port>/<db_number>
 		//              UNIX Connection: unix://<user>:<password>@</path/to/redis.sock>?db=<db_number>
 		os.Getenv("REDIS_URL"),
 		os.Getenv("CLOUDFLARE_ACCESS_KEY"),
