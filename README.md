@@ -35,6 +35,8 @@ Ask questions in the <a href ="https://github.com/dineshsonachalam/redis-cloudfl
 
 ## Latency Comparison between Cloudflare KV vs Redis
 
+We're calculating latency for Read operation between Cloudflare KV vs Redis. Here Redis Read operation is 6.8X (124.216708ms) times faster than Cloudflare KV (1604.654375s).
+
 <!-- MARKDOWN-AUTO-DOCS:START (CODE:src=./.github/examples/latency_check.go) -->
 <!-- The below code snippet is automatically added from ./.github/examples/latency_check.go -->
 ```go
@@ -99,6 +101,8 @@ func main() {
 // dineshsonachalam@macbook examples %
 ```
 <!-- MARKDOWN-AUTO-DOCS:END -->
+
+<img src="./latency_comparison.png"/>
 
 ## Application Architecture
 
